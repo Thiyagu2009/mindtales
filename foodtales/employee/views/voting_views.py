@@ -38,7 +38,7 @@ class SubmitVoteView(generics.CreateAPIView):
         try:
             serializer.is_valid(raise_exception=True)
             vote = serializer.save(user=request.user)
-            logger.info(f"Vote submitted successfully: {vote.id}")
+            logger.info(f"Vote submitted successfully: {vote}")
             return success_response(
                 message="Vote submitted successfully",
                 data=None,
