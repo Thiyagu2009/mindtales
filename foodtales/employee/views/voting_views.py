@@ -117,9 +117,7 @@ class VoteResultsView(generics.ListAPIView):
             logger.error(
                 f"An error occurred while fetching voting results: {str(e)}")
             return error_response(
-                {
-                    "detail": f"An error occurred while fetching voting \
-                    results: {str(e)}"
-                },
+                message="An error occurred while fetching voting results",
+                errors=str(e),
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )

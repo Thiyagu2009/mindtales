@@ -35,6 +35,6 @@ class EmployeeSignUpView(APIView):
         logger.error(f"Employee registration failed: {serializer.errors}")
         return error_response(
             message="Employee Registration Failed",
-            data=serializer.errors,
+            errors=serializer.errors,
             status_code=status.HTTP_400_BAD_REQUEST,
         )

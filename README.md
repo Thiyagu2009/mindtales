@@ -22,6 +22,11 @@ Food Tales is an internal service designed to help employees decide on a lunch p
      - New API: Vote for top three menus with points (1 to 3)
    - View voting results for the current day
 
+## Constraints
+
+- A restaurant can upload only one menu per day.
+- An employee can cast only one vote per day (either old or new version) to avoid duplicate votes.
+
 ## Technical Stack
 
 - **Backend**: Python with Django Rest Framework
@@ -35,14 +40,18 @@ Food Tales is an internal service designed to help employees decide on a lunch p
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/food-tales.git
+   git clone https://github.com/Thiyagu2009/mindtales.git
    ```
-
-2. Build the Docker containers:
+2. Change directory to the project folder:
+    ```bash
+    cd mindtales
+    ```
+3. Build the Docker containers:
     ```bash
     docker-compose up --build
     ```
-3. Run migrations:
+
+4. Run migrations:
     ```bash
     docker-compose run web python manage.py migrate
     ```
@@ -64,6 +73,7 @@ To run the API locally, follow the steps below:
 - Set the value of `Restaurant Auth Token` and `Employee Auth Token` (Fetch from signup/signin API) in Foodtales environment displayed on the left side menu which is used to authenticate the requests and associate the requests to the restaurant and employee respectively.
  ![ Refer](./postman_reference.png)
 - Click Save button to save the environment variables.
+- Ensure you're in the correct environment before running the requests.
 - Example payloads for the requests are also provided.
 
 
