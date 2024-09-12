@@ -30,6 +30,22 @@ Food Tales is an internal service designed to help employees decide on a lunch p
 - **Documentation**: Postman (Swagger/OpenAPI also included for devs)
 - **Testing**: Unit tests implemented
 
+
+## Setup and Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-repo/food-tales.git
+   ```
+
+2. Build the Docker containers:
+    ```bash
+    docker-compose up --build
+    ```
+3. Run migrations:
+    ```bash
+    docker-compose run web python manage.py migrate
+    ```
 ## API Endpoints
 
 - `/auth/token/`: Obtain authentication token
@@ -55,26 +71,6 @@ System Generated Documentation
 - Swagger UI: `/docs/`
 - ReDoc: `/redoc/`
 
-## Setup and Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-repo/food-tales.git
-   ```
-
-2. Navigate to the project directory:
-    ```bash
-    cd food-tales
-    ```
-
-3. Build the Docker containers:
-    ```bash
-    docker-compose up --build
-    ```
-4. Run migrations:
-    ```bash
-    docker-compose run web python manage.py migrate
-    ```
 ## Testing
 
 To run the tests, use the following command:

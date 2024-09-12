@@ -29,7 +29,8 @@ class OldVoteSerializer(serializers.ModelSerializer):
         return data
 
     def create(self, validated_data):
-        validated_data["rank"] = 1  # Old version always creates a top rank vote
+        # Old version always creates a top rank vote
+        validated_data["rank"] = 1
         return super().create(validated_data)
 
 
@@ -45,11 +46,15 @@ class NewVoteSerializer(serializers.Serializer):
         user = self.context["request"].user
         today = timezone.now().date()
         if len(value) != 3:
-            raise serializers.ValidationError("You must provide exactly 3 votes.")
+            raise serializers.ValidationError(
+                "You must provide exactly 3 votes."
+            )
 
         menu_ids = [vote["menu"] for vote in value]
         if len(set(menu_ids)) != 3:
-            raise serializers.ValidationError("You must vote for 3 different menus.")
+            raise serializers.ValidationError(
+                "You must vote for 3 different menus."
+            )
 
         points = [vote["points"] for vote in value]
         if sorted(points) != [1, 2, 3]:
@@ -60,7 +65,8 @@ class NewVoteSerializer(serializers.Serializer):
         # Validate that all menu UUIDs exist
         existing_menus = Menu.objects.filter(id__in=menu_ids)
         if existing_menus.count() != 3:
-            raise serializers.ValidationError("One or more menu IDs are invalid.")
+            raise serializers.ValidationError(
+                "One or more menu IDs are invalid.")
         if Vote.objects.filter(user=user, created_at__date=today).exists():
             raise serializers.ValidationError("You have already voted today.")
         return value

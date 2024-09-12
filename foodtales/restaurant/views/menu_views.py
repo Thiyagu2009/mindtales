@@ -8,7 +8,8 @@ from restaurant.serializers.menu_items_serializers import MenuSerializer
 from ..models import Menu
 from ..serializers.restaurant_serializers import MenuWithRestaurantSerializer
 from user.permissions import IsEmployee, IsRestaurantUser
-from foodtales.utils import CustomPageNumberPagination, success_response, error_response
+from foodtales.utils import CustomPageNumberPagination, success_response, \
+    error_response
 
 logger = logging.getLogger("foodtales")
 
@@ -32,7 +33,8 @@ class MenuCreateView(generics.CreateAPIView):
             )
         except serializers.ValidationError as e:
             logger.error(f"Menu creation failed: {e.detail}")
-            return error_response(message="Menu creation failed", errors=e.detail)
+            return error_response(message="Menu creation failed",
+                                  errors=e.detail)
 
         except Exception as e:
             logger.error(f"Menu creation failed: {str(e)}")
@@ -58,7 +60,8 @@ class MenuRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView):
             return success_response(data=response.data)
         except ObjectDoesNotExist:
             return error_response(
-                message="Menu not found.", status_code=status.HTTP_404_NOT_FOUND
+                message="Menu not found.",
+                status_code=status.HTTP_404_NOT_FOUND
             )
         except Exception as e:
             return error_response(
@@ -95,7 +98,8 @@ class AllRestaurantsCurrentDayMenuView(generics.ListAPIView):
 
     def get_queryset(self):
         today = timezone.now().date()
-        return Menu.objects.filter(date=today, is_published=True).select_related(
+        return Menu.objects.filter(
+            date=today, is_published=True).select_related(
             "restaurant"
         )
 
@@ -103,7 +107,8 @@ class AllRestaurantsCurrentDayMenuView(generics.ListAPIView):
         try:
             queryset = self.get_queryset()
             if not queryset.exists():
-                return success_response(message="No menus available for today.")
+                return success_response(
+                    message="No menus available for today.")
 
             page = self.paginate_queryset(queryset)
             if page is not None:
@@ -120,7 +125,8 @@ class AllRestaurantsCurrentDayMenuView(generics.ListAPIView):
                 data = serializer.data
 
             logger.info(
-                f"Today's menu fetched successfully. Total menus: {len(data['results'] if page else data)}"
+                f"Today's menu fetched successfully. Total menus: \
+                {len(data['results'] if page else data)}"
             )
             return success_response(
                 message="Today's menu fetched successfully", data=data

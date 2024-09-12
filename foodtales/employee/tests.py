@@ -102,10 +102,12 @@ class GetCurrentDayVoteTest(APITestCase):
             user_type="restaurant",
         )
         self.menu1 = Menu.objects.create(
-            restaurant=self.restaurant, date=timezone.now().date(), is_published=True
+            restaurant=self.restaurant, date=timezone.now().date(),
+            is_published=True
         )
         self.menu2 = Menu.objects.create(
-            restaurant=self.restaurant2, date=timezone.now().date(), is_published=True
+            restaurant=self.restaurant2, date=timezone.now().date(),
+            is_published=True
         )
         current_time = timezone.now()
         Vote.objects.create(

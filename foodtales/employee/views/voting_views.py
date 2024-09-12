@@ -46,13 +46,16 @@ class SubmitVoteView(generics.CreateAPIView):
             )
         except serializers.ValidationError as e:
             logger.error(f"Vote submission failed: {e.detail}")
-            return error_response(message="Vote submission failed", errors=e.detail)
+            return error_response(
+                message="Vote submission failed", errors=e.detail)
         except ObjectDoesNotExist as e:
             logger.error(f"Vote submission failed: {str(e)}")
-            return error_response(message="Vote submission failed", errors=str(e))
+            return error_response(
+                message="Vote submission failed", errors=str(e))
         except Exception as e:
             logger.error(f"Vote submission failed: {str(e)}")
-            return error_response(message="Vote submission failed", errors=str(e))
+            return error_response(
+                message="Vote submission failed", errors=str(e))
 
 
 class VoteResultsView(generics.ListAPIView):
@@ -103,17 +106,20 @@ class VoteResultsView(generics.ListAPIView):
                 )
 
             serializer = self.get_serializer(queryset, many=True)
-            logger.info(f"Voting results fetched successfully: {serializer.data}")
+            logger.info(
+                f"Voting results fetched successfully: {serializer.data}")
             return success_response(
                 message="Voting results fetched successfully",
                 data=serializer.data,
                 status_code=status.HTTP_200_OK,
             )
         except Exception as e:
-            logger.error(f"An error occurred while fetching voting results: {str(e)}")
+            logger.error(
+                f"An error occurred while fetching voting results: {str(e)}")
             return error_response(
                 {
-                    "detail": f"An error occurred while fetching voting results: {str(e)}"
+                    "detail": f"An error occurred while fetching voting \
+                    results: {str(e)}"
                 },
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )

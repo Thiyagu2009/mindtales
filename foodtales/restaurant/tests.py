@@ -100,7 +100,8 @@ class AllRestaurantsCurrentDayMenuViewTestCase(TestCase):
             restaurant_name="Restaurant 2",
         )
         self.employee = User.objects.create_user(
-            email="employee@example.com", password="testpass123", user_type="employee"
+            email="employee@example.com", password="testpass123",
+            user_type="employee"
         )
         self.today = timezone.now().date()
 
@@ -121,7 +122,10 @@ class AllRestaurantsCurrentDayMenuViewTestCase(TestCase):
         self.client.force_authenticate(user=self.employee)
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data["message"], "No menus available for today.")
+        self.assertEqual(
+            response.data["message"],
+            "No menus available for today."
+        )
         self.assertIsNone(response.data["data"])
 
     def test_list_todays_menus_unauthorized(self):

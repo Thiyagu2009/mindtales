@@ -19,10 +19,13 @@ class Vote(models.Model):
     ]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="votes")
-    menu = models.ForeignKey(Menu, on_delete=models.CASCADE, related_name="votes")
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name="votes")
+    menu = models.ForeignKey(
+        Menu, on_delete=models.CASCADE, related_name="votes")
     rank = models.IntegerField(
-        choices=RANK_CHOICES, validators=[MinValueValidator(1), MaxValueValidator(3)]
+        choices=RANK_CHOICES,
+        validators=[MinValueValidator(1), MaxValueValidator(3)]
     )
     created_at = models.DateTimeField(default=datetime.now)
 
@@ -30,7 +33,8 @@ class Vote(models.Model):
         constraints = [
             UniqueConstraint(
                 fields=["user", "menu"],
-                condition=models.Q(created_at__date=models.F("created_at__date")),
+                condition=models.Q(
+                    created_at__date=models.F("created_at__date")),
                 name="unique_user_menu_per_day",
             )
         ]

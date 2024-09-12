@@ -31,7 +31,8 @@ class MenuItem(models.Model):
         ("beverage", "Beverage"),
     ]
 
-    menu = models.ForeignKey(Menu, related_name="items", on_delete=models.CASCADE)
+    menu = models.ForeignKey(Menu, related_name="items",
+                             on_delete=models.CASCADE)
     name = models.CharField(max_length=100)
     description = models.TextField(blank=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)

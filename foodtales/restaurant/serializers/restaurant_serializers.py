@@ -35,4 +35,5 @@ class MenuWithVotesSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Menu
-        fields = ["id", "date", "is_published", "restaurant", "total_points", "items"]
+        fields = ["id", "date", "is_published", "restaurant", "total_points",
+                  "items"]

@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-r0%i^p=ni!3o4db)zrl%wt4^(u%gy$1jo@ty^7$(1n6su$iqyu"
+SECRET_KEY = "django-insecure-r0%i^p=ni!3o4db)zrl%wt4^(u%gy$1jo@ty^7$(1n6su$"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -91,7 +91,8 @@ WSGI_APPLICATION = "foodtales.wsgi.application"
 DATABASES = {
     "default": dj_database_url.config(
         default=os.environ.get(
-            "DATABASE_URL",  # "postgres://postgres:postgres@127.0.0.1:5432/foodtales"
+            "DATABASE_URL",
+            "postgres://postgres:postgres@127.0.0.1:5432/foodtales"
         )
     )
 }
@@ -116,13 +117,17 @@ AUTH_PASSWORD_VALIDATORS = [
         ),
     },
     {
-        "NAME": ("django.contrib.auth.password_validation." "MinimumLengthValidator"),
+        "NAME": (
+            "django.contrib.auth.password_validation." "MinimumLengthValidator"
+            ),
     },
     {
-        "NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.CommonPasswordValidator",
     },
     {
-        "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
+        "NAME":
+        "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
 

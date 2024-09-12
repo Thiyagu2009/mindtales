@@ -4,7 +4,8 @@ from rest_framework.permissions import AllowAny
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from foodtales.utils import success_response, error_response
-from restaurant.serializers.signup_serializers import RestaurantSignUpSerializer
+from restaurant.serializers.signup_serializers import \
+    RestaurantSignUpSerializer
 
 
 class RestaurantSignUpView(APIView):
@@ -29,7 +30,7 @@ class RestaurantSignUpView(APIView):
                 errors=serializer.errors,
                 status_code=status.HTTP_400_BAD_REQUEST,
             )
-        except Exception as e:
+        except Exception:
             return error_response(
                 message="Restaurant Creation Failed",
                 errors="Unexpected Error Occurred",

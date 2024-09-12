@@ -41,10 +41,12 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     # Fields for Restaurant
     restaurant_name = models.CharField(max_length=100, blank=True, null=True)
-    restaurant_id = models.CharField(max_length=50, unique=True, blank=True, null=True)
+    restaurant_id = models.CharField(max_length=50, unique=True, blank=True,
+                                     null=True)
 
     # Fields for Employee
-    employee_id = models.CharField(max_length=50, unique=True, blank=True, null=True)
+    employee_id = models.CharField(max_length=50, unique=True, blank=True,
+                                   null=True)
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
