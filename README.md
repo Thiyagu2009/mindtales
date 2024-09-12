@@ -73,7 +73,7 @@ To run the API locally, follow the steps below:
 - Set the value of `Restaurant Auth Token` and `Employee Auth Token` (Fetch from signup/signin API) in Foodtales environment displayed on the left side menu which is used to authenticate the requests and associate the requests to the restaurant and employee respectively.
  ![ Refer](./postman_reference.png)
 - Click Save button to save the environment variables.
-- Ensure you're in the correct environment before running the requests.
+- Ensure you're in the correct environment before sending the requests.
 - Example payloads for the requests are also provided.
 
 
