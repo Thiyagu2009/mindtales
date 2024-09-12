@@ -51,7 +51,7 @@ Food Tales is an internal service designed to help employees decide on a lunch p
     docker-compose up --build
     ```
 
-4. Run migrations:
+4. Run migrations in new terminal:
     ```bash
     docker-compose run web python manage.py migrate
     ```
