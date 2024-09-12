@@ -58,10 +58,12 @@ For detailed API documentation, visit:
 - Visit [Postman Docs](https://documenter.getpostman.com/view/3203543/2sAXqmCmCF)
 
 To run the API locally, follow the steps below:
-- In the above postman, click on the "Run in Postman" button.
+- In the above postman documentation, click on the "Run in Postman" button in top right corner.
 - In postman app, click on the "Environments" tab (top right corner).
 - Select the "FoodTales" environment.
-- Set the value of `Restaurant Auth Token` and `Employee Auth Token` in Foodtales environment displayed on the left side menu which is used to authenticate the requests and associate the requests to the restaurant and employee respectively.
+- Set the value of `Restaurant Auth Token` and `Employee Auth Token` (Fetch from signup/signin API) in Foodtales environment displayed on the left side menu which is used to authenticate the requests and associate the requests to the restaurant and employee respectively.
+ ![ Refer](./postman_reference.png)
+- Click Save button to save the environment variables.
 - Example payloads for the requests are also provided.
 
 

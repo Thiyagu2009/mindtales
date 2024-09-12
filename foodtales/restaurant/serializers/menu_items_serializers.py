@@ -28,9 +28,11 @@ class MenuSerializer(serializers.ModelSerializer):
         # Check if a menu already exists for this restaurant and date
         if Menu.objects.filter(restaurant=restaurant, date=date).exists():
             raise serializers.ValidationError(
-                "A menu for this date already exists for your restaurant. \
-                Create a new menu for a different date or with different \
-                restaurant."
+                "A menu for this date already exists for your restaurant."
+                +
+                "Create a new menu for a different date or with different"
+                +
+                "restaurant."
             )
 
         # Remove 'restaurant' from validated_data if it exists
